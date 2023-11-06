@@ -61,13 +61,13 @@ function Register() {
           register={register("password")}
         />
         <ErrorMsg errorState={errors.password} />
-        <button
-          type="submit"
-          className="w-full rounded-md border-2 bg-yellow-400 p-3 hover:bg-yellow-200 active:bg-yellow-500"
-        >
-          Cadastrar
-        </button>
-        <div>
+        <div className="mt-4">
+          <button
+            type="submit"
+            className="w-full rounded-md border-2 bg-yellow-400 p-3 hover:bg-yellow-200 active:bg-yellow-500"
+          >
+            Cadastrar
+          </button>
           <h4>
             Já possui conta?{" "}
             <Link
