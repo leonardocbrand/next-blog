@@ -5,7 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { NewUserFormData, newUserSchema } from "@/schemas/zod.schemas";
+import { UserLoginFormData, userLoginSchema } from "@/schemas/zod.schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ErrorMsg } from "@/components/ErrorMsg.tsx";
 
@@ -14,14 +14,14 @@ function Register() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<NewUserFormData>({
-    resolver: zodResolver(newUserSchema),
+  } = useForm<UserLoginFormData>({
+    resolver: zodResolver(userLoginSchema),
   });
   const router = useRouter();
 
-  const onSubmit = async (data: NewUserFormData) => {
+  const onSubmit = async (data: UserLoginFormData) => {
     try {
-      await axios.post("/register", data);
+      await axios.post("/login", data);
       router.refresh();
 
       setTimeout(() => {
@@ -39,13 +39,6 @@ function Register() {
         className="
         flex flex-col justify-center gap-2 rounded-lg bg-slate-200 p-12 text-center shadow-md sm:w-3/6 md:max-w-md"
       >
-        <Input
-          placeholder="name"
-          id="name"
-          type="text"
-          register={register("name")}
-        />
-        <ErrorMsg errorState={errors.name} />
         <Input
           placeholder="email"
           id="email"
@@ -68,12 +61,12 @@ function Register() {
             Cadastrar
           </button>
           <h4>
-            Já possui conta?{" "}
+            Não possui uma conta?{" "}
             <Link
-              href="/login"
+              href="/register"
               className="cursor-pointer text-sm text-blue-700 hover:text-blue-400"
             >
-              Entrar
+              Cadastrar
             </Link>
           </h4>
         </div>
