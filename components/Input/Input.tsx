@@ -38,17 +38,16 @@ function Input({
         bg-white 
         p-3
         pt-6
-        text-sm
         font-light
         text-black
         placeholder-slate-400
         shadow-sm 
         outline-none 
         ${big ? "w-[400px] pb-[6rem]" : ""} 
-        focus:border-sky-500 
+        focus:border-yellow-200 
         focus:outline-none 
         focus:ring-1 
-        focus:ring-sky-500
+        focus:ring-yellow-300
         ${className}   
       `}
     />
