@@ -38,7 +38,7 @@ function Register() {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="
-        flex w-4/6 flex-col justify-center gap-2 text-center"
+        flex flex-col justify-center gap-2 rounded-lg bg-slate-200 p-12 text-center shadow-md sm:w-3/6 md:max-w-md"
       >
         <Input
           placeholder="name"
@@ -50,27 +50,30 @@ function Register() {
         <Input
           placeholder="email"
           id="email"
-          type="text"
+          type="email"
           register={register("email")}
         />
         <ErrorMsg errorState={errors.email} />
         <Input
           placeholder="password"
           id="password"
-          type="text"
+          type="password"
           register={register("password")}
         />
         <ErrorMsg errorState={errors.password} />
         <button
           type="submit"
-          className="w-full rounded-md border-2 p-3 hover:bg-yellow-300"
+          className="w-full rounded-md border-2 bg-yellow-400 p-3 hover:bg-yellow-200 active:bg-yellow-500"
         >
           Cadastrar
         </button>
         <div>
           <h4>
             Já possui conta?{" "}
-            <Link href="/login" className="text-blue-700 hover:text-blue-400">
+            <Link
+              href="/login"
+              className="cursor-pointer text-sm text-blue-700 hover:text-blue-400"
+            >
               Entrar
             </Link>
           </h4>
