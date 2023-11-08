@@ -4,8 +4,6 @@ import { UseFormRegisterReturn } from "react-hook-form";
 type InputProps = {
   type: string;
   id?: string;
-  value?: any;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   big?: boolean;
   className?: string;
@@ -15,9 +13,7 @@ type InputProps = {
 function Input({
   id,
   type,
-  value,
   big = false,
-  onChange = () => {},
   className = "",
   placeholder = "",
   register,
@@ -27,8 +23,6 @@ function Input({
       {...register}
       type={type}
       id={id}
-      value={value}
-      onChange={onChange}
       placeholder={placeholder}
       className={`
         w-full 
