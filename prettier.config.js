@@ -1,6 +1,6 @@
 module.exports = {
   plugins: ['prettier-plugin-tailwindcss'],
-  [prisma]: {
+  prisma: {
     "editor.defaultFormatter": "Prisma.prisma"
   },
   
