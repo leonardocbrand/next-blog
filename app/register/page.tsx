@@ -21,7 +21,7 @@ function Register() {
 
   const onSubmit = async (data: NewUserFormData) => {
     try {
-      await axios.post("/register", data);
+      await axios.post("api/register", data);
       router.refresh();
 
       setTimeout(() => {
