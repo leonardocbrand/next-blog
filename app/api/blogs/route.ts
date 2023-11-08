@@ -29,3 +29,16 @@ export const POST = async (req: NextRequest) => {
     }
   }
 };
+
+export const GET = async () => {
+  try {
+    const getAllPosts = await prisma.listing.findMany();
+
+    return NextResponse.json(
+      { message: "Posts listados com sucesso", data: getAllPosts },
+      { status: 200 },
+    );
+  } catch (err) {
+    return NextResponse.json({ message: err }, { status: 500 });
+  }
+};
