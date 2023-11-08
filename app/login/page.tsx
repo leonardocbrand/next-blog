@@ -1,13 +1,14 @@
 "use client";
 
 import { Input } from "@/components/Input";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { UserLoginFormData, userLoginSchema } from "@/schemas/zod.schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ErrorMsg } from "@/components/ErrorMsg.tsx";
+import { signIn } from "next-auth/react";
+import toast, { Toaster } from "react-hot-toast";
 
 function Register() {
   const {
@@ -21,12 +22,26 @@ function Register() {
 
   const onSubmit = async (data: UserLoginFormData) => {
     try {
-      await axios.post("/login", data);
-      router.refresh();
+      const auth = await signIn("credentials", {
+        ...data,
+        redirect: false,
+      });
+
+      toast.loading("Carregando", {
+        duration: 800,
+      });
+
+      if (auth?.error) {
+        setTimeout(() => {
+          toast.error(auth.error);
+        }, 1200);
+        throw new Error(auth.error);
+      }
 
       setTimeout(() => {
-        router.push("/login");
-      }, 2000);
+        toast.success("Logado com sucesso");
+        router.push("/");
+      }, 1000);
     } catch (err) {
       console.error(err);
     }
@@ -34,6 +49,7 @@ function Register() {
 
   return (
     <main className="flex h-screen items-center justify-center">
+      <Toaster />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="
